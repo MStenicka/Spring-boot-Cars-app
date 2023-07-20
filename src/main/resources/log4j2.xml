@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+        <JDBC name="cars" tableName="logs">
+           <!-- <ConnectionFactory
+                           class="org.apache.logging.log4j.core.appender.db.DataSourceConnectionFactory">
+                  <dataSource class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+                           <driverClass>com.mysql.cj.jdbc.Driver</driverClass>
+                           <url>jdbc:mysql://localhost:3306/cars?serverTimezone=UTC</url>
+                           <user>root</user>
+                           <password>ATEAMpassword</password>
+                       </dataSource>
+            </ConnectionFactory> -->
+            <Column name="id" pattern="%u" />
+            <Column name="eventDate" isEventTimestamp="true" />
+            <Column name="level" pattern="%level" />
+            <Column name="logger" pattern="%logger" />
+            <Column name="message" pattern="%message" />
+        </JDBC>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.example.cars.controller" level="INFO">
+            <AppenderRef ref="cars" />
+        </Logger>
+        <Logger name="com.example.cars.controller" level="ERROR">
+            <AppenderRef ref="cars" />
+        </Logger>
+        <Logger name="com.example.cars.controller" level="NOT_VALID">
+            <AppenderRef ref="cars" />
+        </Logger>
+        <Logger name="com.example.cars.controller" level="SUCCESS">
+            <AppenderRef ref="cars" />
+        </Logger>
+        <Root level="INFO">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
+

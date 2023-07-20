@@ -1,0 +1,93 @@
+package com.example.cars.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+@Entity
+@Table ( name = "manufacturer")
+public class Manufacturer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
+    @NotBlank
+    private String name;
+
+    @Column(name = "street")
+    @Pattern(regexp = "^(?!\\d+$)[A-Za-z\\d\\s]+$")
+    private String street;
+
+    @Column(name = "city")
+    @Pattern(regexp = "^(?!\\d+$)[A-Za-z\\d\\s]+$")
+    private String city;
+
+    @Column(name = "zipCode")
+    @NotBlank
+    private String zipCode;
+
+    @Column(name = "country")
+    @NotBlank
+    private String country;
+
+    public Manufacturer() {
+    }
+
+    public Manufacturer(Long id, String name, String street, String city, String zipCode, String country) {
+        this.id = id;
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.country = country;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+}
